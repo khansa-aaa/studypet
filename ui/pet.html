@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'">
+<title>Hoot</title>
+<link rel="stylesheet" href="pet.css">
+</head>
+<body>
+  <section id="bubble" class="bubble" hidden aria-label="Hoot">
+    <header class="bubble-head">
+      <strong class="name">Hoot</strong>
+      <span class="head-actions">
+        <button type="button" class="link" id="reset">New chat</button>
+        <button type="button" class="icon-btn" id="close" aria-label="Close">×</button>
+      </span>
+    </header>
+
+    <div id="log-wrap" class="panel">
+      <div id="chatlog" class="chatlog" aria-live="polite"></div>
+    </div>
+
+    <div id="perm" class="perm" hidden>
+      <p>Hoot needs <strong>Screen Recording</strong> permission to see your screen. Turn it on for <strong>Electron</strong> in System Settings, then quit and reopen Hoot.</p>
+      <button type="button" id="perm-open" class="btn primary">Open System Settings</button>
+    </div>
+
+    <form id="ask" class="ask">
+      <textarea id="ask-input" rows="2" placeholder="Ask about what's on your screen…" aria-label="Ask Hoot"></textarea>
+      <div class="ask-row">
+        <label class="screen-toggle"><input type="checkbox" id="with-screen" checked> Look at my screen</label>
+        <button type="submit" id="ask-send" class="btn primary">Ask</button>
+      </div>
+    </form>
+  </section>
+
+  <div id="pet" class="pet" role="button" tabindex="0" aria-label="Hoot. Click to ask, drag to move, right-click for options.">
+    <div id="sprite" class="sprite"></div>
+  </div>
+  <script src="pet.js"></script>
+</body>
+</html>

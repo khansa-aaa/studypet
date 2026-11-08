@@ -1,0 +1,71 @@
+:root {
+  --paper: #fffaf2;
+  --ink: #2e1d10;
+  --muted: #7d6650;
+  --line: #f0dfc8;
+  --hoot: #ec7f1c;
+  --hoot-ink: #ffffff;
+  --cream: #fdebcf;
+  --bad: #c0392b;
+  --shadow: 0 12px 36px rgba(70, 35, 5, .22);
+  font: 13px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #231a13;
+    --ink: #f7ecdf;
+    --muted: #c7b09a;
+    --line: #45352a;
+    --hoot: #ff9a3d;
+    --hoot-ink: #1d1108;
+    --cream: #3a2a1d;
+    --bad: #ff7a6b;
+    --shadow: 0 12px 36px rgba(0, 0, 0, .5);
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; user-select: none; }
+button, textarea { font: inherit; }
+
+/* The Codex sheet is 8 columns x 11 rows of 192x208 frames, drawn here at 120x130 (0.625x). */
+.pet { position: fixed; right: 10px; bottom: 4px; width: 120px; height: 130px; cursor: grab; outline: none; }
+.pet:focus-visible { outline: 2px solid var(--hoot); border-radius: 12px; }
+.pet:active { cursor: grabbing; }
+.sprite { width: 120px; height: 130px; background-image: url("../assets/hoots-spritesheet-v8.webp"); background-repeat: no-repeat; background-size: 960px 1430px; transform-origin: 50% 94%; /* Hoot's feet, so scaling keeps it on the ground */ filter: drop-shadow(0 6px 8px rgba(90, 40, 0, .25)); }
+
+.bubble { position: fixed; right: 18px; bottom: 140px; width: calc(100vw - 36px); height: calc(100vh - 158px); background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); display: grid; grid-template-rows: auto minmax(0, 1fr) auto auto; grid-template-columns: minmax(0, 1fr); overflow: hidden; }
+.bubble::after { content: ""; position: absolute; right: 56px; bottom: -8px; width: 14px; height: 14px; background: var(--paper); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
+.bubble-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 6px 6px 14px; border-bottom: 1px solid var(--line); }
+.name { font-size: 14px; }
+.head-actions { display: flex; align-items: center; gap: 4px; }
+.icon-btn { border: 0; background: none; color: var(--muted); font-size: 20px; line-height: 1; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; }
+.icon-btn:hover { background: var(--line); }
+.link { border: 0; background: none; color: var(--muted); text-decoration: underline; cursor: pointer; padding: 4px 6px; font-size: 12px; }
+.btn { border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 8px; padding: 5px 12px; cursor: pointer; min-height: 30px; }
+.btn.primary { background: var(--hoot); border-color: var(--hoot); color: var(--hoot-ink); font-weight: 600; }
+.btn[disabled] { opacity: .5; cursor: default; }
+.btn:focus-visible, .icon-btn:focus-visible, .link:focus-visible { outline: 2px solid var(--hoot); outline-offset: 2px; }
+
+.panel { overflow-y: auto; padding: 12px; min-height: 0; }
+.chatlog { display: grid; gap: 8px; align-content: start; }
+.msg { padding: 8px 11px; border-radius: 12px; max-width: 92%; white-space: pre-wrap; user-select: text; overflow-wrap: anywhere; }
+.msg.you { justify-self: end; background: var(--hoot); color: var(--hoot-ink); border-bottom-right-radius: 4px; }
+.msg.hoot { justify-self: start; background: var(--cream); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+.msg.error { border-color: var(--bad); color: var(--bad); }
+.msg.thinking { color: var(--muted); font-style: italic; }
+.msg code { font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; background: color-mix(in srgb, var(--ink) 8%, transparent); padding: 0 4px; border-radius: 4px; }
+.shot { justify-self: end; display: grid; gap: 2px; justify-items: end; }
+.shot img { width: 140px; border-radius: 6px; border: 1px solid var(--line); display: block; }
+.shot span { color: var(--muted); font-size: 11px; }
+
+.perm { margin: 0 12px 8px; padding: 10px 12px; border: 1px solid var(--hoot); border-radius: 12px; display: grid; gap: 8px; justify-items: start; }
+.perm p { margin: 0; }
+
+.ask { display: grid; gap: 6px; border-top: 1px solid var(--line); padding: 10px 12px; }
+.ask textarea { resize: none; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 7px 9px; min-height: 44px; max-height: 120px; user-select: text; }
+.ask textarea:focus { outline: 2px solid var(--hoot); outline-offset: 0; }
+.ask-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.screen-toggle { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }

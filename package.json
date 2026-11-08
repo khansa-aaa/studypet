@@ -1,0 +1,21 @@
+{
+  "name": "studypet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hoot, a desktop study pet that looks at your screen and answers questions with your Claude subscription.",
+  "main": "main.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.js"
+  },
+  "devDependencies": {
+    "electron": "33.4.11"
+  },
+  "allowScripts": {
+    "electron": true
+  },
+  "overrides": {
+    "yauzl": "^3.4.0"
+  }
+}
